@@ -9,7 +9,7 @@ jobs:
 
     steps:
     # 切代码到 runner
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
       with:
         submodules: true
     # 下载 git submodule

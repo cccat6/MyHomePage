@@ -6,7 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: manyuanrong/setup-ossutil@master
+    - uses: actions/checkout@master
+    - uses: manyuanrong/setup-ossutil@v2.0
       with:
         endpoint: "oss-cn-qingdao.aliyuncs.com"
         access-key-id: ${{ secrets.ACCESS_KEY_ID }}

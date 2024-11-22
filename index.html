@@ -24,6 +24,40 @@
 </head>
 
 
+<style>
+  .pub-item {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  }
+  
+  .pub-buttons {
+    margin-top: 10px;
+  }
+  
+  .pub-buttons a {
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+  
+  .pub-buttons a:hover {
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 600px) {
+    .pub-image.w3-col, 
+    .pub-info.w3-col {
+      width: 100% !important;
+    }
+    
+    .pub-image {
+      margin-bottom: 15px;
+    }
+  }
+    </style>
+
+
 <body class="w3-content" style="max-width:1000px;background-color:#fafafa;">
 
   <div style="background-color:#fff;">
@@ -35,9 +69,9 @@
   <div class="w3-padding-64 w3-text-light-grey w3-large" style="font-weight:bold">
     <a href="#home" class="w3-bar-item w3-button">Home</a>
     <a href="#academic" class="w3-bar-item w3-button">Academic</a>
-    <a href="#professional" class="w3-bar-item w3-button">Professional Experiences</a>
-    <a href="#projects" class="w3-bar-item w3-button">Projects</a>
     <a href="#publications" class="w3-bar-item w3-button">Publications</a>
+    <a href="#professional" class="w3-bar-item w3-button">Professional Experiences</a>
+    <!-- <a href="#projects" class="w3-bar-item w3-button">Projects</a> -->
     <a href="#award" class="w3-bar-item w3-button">Awards</a>
     <a href="#others" class="w3-bar-item w3-button">Others</a>
   </div>
@@ -60,15 +94,16 @@
 
 <!-- The Home Section -->
     <div class="w3-container w3-center w3-padding-32" id="home">
-      <img style="width: 80%;max-width: 240px" alt="Profile Photo" src="images/profile.webp">
+      <img style="width: 80%;max-width: 240px;border-radius: 50%;" alt="Profile Photo" src="images/profile.webp">
       <h1>Yitao JIANG</h1>
         <p class="w3-justify" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;max-width:600px">
-          I am currently a Ph.D. student in <a href="https://web.cs.dartmouth.edu/people/yitao-jiang">Computer Science Department</a> at Dartmouth College.<br>I have finished my Master of Engineering Management degree in <a href="https://directory.thayer.dartmouth.edu/f006gn4.html">Thayer school of Engineering</a> at Dartmouth College.<br>I have finished my undergraduate degree at University of California, Santa Cruz.
+          I am a Ph.D. student in <a href="https://web.cs.dartmouth.edu/people/yitao-jiang" target="_blank">Computer Science Department</a> at Dartmouth College.<br>I have finished my Master of Engineering Management degree in <a href="https://directory.thayer.dartmouth.edu/f006gn4.html" target="_blank">Thayer school of Engineering</a> at Dartmouth College.<br>I have finished my undergraduate degree at University of California, Santa Cruz.
         </p>
         <p class="w3-center">
           <a href="mailto:Yitao.Jiang.GR@dartmouth.edu">Yitao.Jiang.GR@dartmouth.edu</a> &nbsp/&nbsp
-          <a href="https://www.linkedin.com/in/jyt/"> LinkedIn </a> &nbsp/&nbsp
-          <a href="https://github.com/cccat6">GitHub</a> &nbsp/&nbsp
+          <a href="https://www.linkedin.com/in/jyt/" target="_blank"> LinkedIn </a> &nbsp/&nbsp
+          <a href="https://github.com/cccat6" target="_blank">GitHub</a> &nbsp/&nbsp
+          <a href="https://scholar.google.com/citations?user=xHqAqFUAAAAJ" target="_blank">Google Scholar</a>
         </p>
         </tbody></table>
   </div>
@@ -100,143 +135,296 @@
       </dl>
     </div>
 
-  <!-- The Professional Experience Section -->
-    <div class="w3-container w3-padding-32" id="professional">
-      <h2>Professional Experiences</h2>
-        
-      <dl>
-        <p> <!--Element-->
-          <dt><b>Dartmouth Reality and Robotics Lab</b><a style="float: right;">10/2022 - 09/2024</a></dt>
-          <dt><a style="float: right;">Hanover, U.S.</a></dt>
-          <dd><b>Research Assistant</b></dd>
-          <dd>
-            <ul>
-              <li>Research in modular tensegrity robots, including structure, motion, and control</li>
-              <li>Design experiments and engineering solutions for experiments</li>
-              <li>Hardware design, embedded programming, and managing the experiment robot development</li>
-              <li>Purposed multiple further research orientations and dived deep into them for publications</li>
-            </ul>
-          </dd>
-        </p>
-        <p> <!--Element-->
-          <dt><b>ByteDance Ltd.</b><a style="float: right;">03/2023 - 05/2023 (12 Weeks)</a></dt>
-          <dt><a style="float: right;">Shenzhen, China</a></dt>
-          <dd><b>Tech PMO Intern</b></dd>
-          <dd>
-            <ul>
-              <li>Coordinated the management of 6 projects across the Toutiao&UG&Search business line and the internal security team</li>
-              <li>Managed a confidential project involving 68 stakeholders from initiation to company-wide internal testing launch, ensuring smooth communication and alignment of goals</li>
-              <li>Analyzed project processes, blocking points, then optimize workflow in adherence to established procedures, enhanced productivity and work efficiency</li>
-              <li>Conducted demand return measurements and provided insightful reports on specific business</li>
-            </ul>
-          </dd>
-        </p>
-        <p> <!--Element-->
-          <dt><b>University of California, Santa Cruz</b><a style="float: right;">01/2022 - 06/2022</a></dt>
-          <dt><a style="float: right;">Santa Cruz, U.S.</a></dt>
-          <dd><b>Tutor/Grader</b></dd>
-          <dd>
-            <ul>
-              <li>Instructing students in the tutoring section twice a week and guiding students on their assignments</li>
-              <li>Communicate with the professor and other TAs to work on grading and teaching</li>
-            </ul>
-          </dd>
-        </p>
-        <p> <!--Element-->
-          <dt><b>Shenzhen Babatech Co., Ltd.</b><a style="float: right;">10/2016 - 06/2022</a></dt>
-          <dt><a style="float: right;">Shenzhen, China</a></dt>
-          <dd><b>Founder</b></dd>
-          <dd>
-            <ul>
-              <li>Achieved an annual turnover of 30k USD by the year 2020, and the total number of customers reached 300+</li>
-              <li>Developed a mini-program independently for snack selling on the WeChat platform to sell snacks in the North American market</li>
-              <li>Connect with supplier for order and inventory control; in charge of warehouse management and transportation management</li>
-              <li>Performed data analytics for target customer profiling and developed marketing campaigns</li>
-            </ul>
-          </dd>
-        </p>
-        <p> <!--Element-->
-          <dt><b>Quandiankeji (Shenzhen) Ltd.</b><a style="float: right;">11/2019 - 03/2022</a></dt>
-          <dt><a style="float: right;">Shenzhen, China</a></dt>
-          <dd><b>CTO</b></dd>
-          <dd>
-            <ul>
-              <li>Led the team of 12 people across product R&D, design team, and product owner; determined and executed the development plan</li>
-              <li>Managed relationships with international customers (France and Spain) and customized solutions</li>
-              <li>Inspected all the code and merged code written by colleges</li>
-              <li>Coded backend system and embedded system</li>
-            </ul>
-          </dd>
-        </p>
-        <p> <!--Element-->
-          <dt><b>Shenzhen Vanke Meisha Academy</b><a style="float: right;">08/2020 - 02/2021</a></dt>
-          <dt><a style="float: right;">Shenzhen, China</a></dt>
-          <dd><b>STEAM Teacher</b></dd>
-          <dd>
-            <ul>
-              <li>Design and execute the course plan for Electronic Engineering, Robotics class</li>
-              <li>Communicate and collaborate with other teachers about teaching and various stuff</li>
-            </ul>
-          </dd>
-        </p>
-        <p> <!--Element-->
-          <dt><b>Shenzhen Wuxianxuhang Ltd.</b><a style="float: right;">06/2019 - 11/2019</a></dt>
-          <dt><a style="float: right;">Shenzhen, China</a></dt>
-          <dd><b>Software and Hardware Engineer Intern</b></dd>
-          <dd>
-            <ul>
-              <li>Developed product and upgraded information system, including electronic circuit design and server middleware programming</li>
-              <li>Tripled sales for the upgraded product compared with the prior product to 3k+</li>
-              <li>Reduced server cost by 50% by solving the crash caused by overflow; improved the stability, capability, and robustness of service</li>
-            </ul>
-          </dd>
-        </p>
-      </dl>
-    </div>
-
     <!-- The Publications Section -->
-     <div class="w3-container w3-light-grey w3-padding-32" id="publications">
+     <div class="w3-container w3-padding-32" id="publications">
        <h2>Publications</h2>
-         <p class="w3-left-align" style="line-height:200%">
-           Publications including papers and patents.
-         </p>
-       <h4>Patents:</h4>
-       <ol>
-          <p>
-            <li><strong>External Smart Switch</strong>
-              <br>
-              CN (Patent) - 202211031062.X
-              <br>
-              Preliminary reviewed by October 8, 2022 
-            </li>
-          </p>
-          <p>
-            <li><strong>Easy Peel-Off Sticker Accessory</strong>
-              <br>
-              CN (Patent) - 202211032337.1
-              <br>
-              Preliminary reviewed by September 16, 2022 
-            </li>
-          </p>
-          <p>
-            <li><strong>The Method of Voice and Audio Enhancement Through Computer Recognition and Regeneration</strong>
-              <br>
-              CN (Patent) - 202110035305.6
-              <br>
-              Preliminary reviewed by March 30, 2021 
-            </li>
-          </p>
-        </ol>
+       <div class="publication-list">
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/SoftRafts.gif" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">SoftRafts: Floating Soft Modular Robots</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Luyang Zhao, <b>Yitao Jiang</b>, Chun-Yi She, Haibo Dong, Alberto Quattrini Li, Muhao Chen, Devin Balkcom</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">Confidential (To be submit)</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">N/A</span>
+            </p>
+            <div class="pub-buttons">
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/Dolphin.gif" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">An Untethered Bioinspired Robotic Tensegrity Dolphin with Multi-Flexibility Design for Aquatic Locomotion</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Luyang Zhao, <b>Yitao Jiang</b>, Chun-Yi She, Mingi Jeong, Haibo Dong, Alberto Quattrini Li, Muhao Chen, and Devin Balkcom</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">RoboSoft 2025 (Under Review)</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">November 2024</span>
+            </p>
+            <div class="pub-buttons">
+              <a href="http://arxiv.org/abs/2411.00347" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a>
+              <a href="https://www.youtube.com/watch?v=avUUYTJ178g" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a>
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/learning.png" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">On the Exploration of LM-Based Soft Modular Robot Design</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Weicheng Ma*, Luyang Zhao*, Chun-Yi She*, <b>Yitao Jiang</b>, Alan Sun, Bo Zhu, Devin Balkcom, Soroush Vosoughi</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">RoboSoft 2025 (Under Review)</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">November 2024</span>
+            </p>
+            <div class="pub-buttons">
+              <a href="http://arxiv.org/abs/2411.00345" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a>
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/SoftSnap.gif" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">SoftSnap: Rapid Prototyping of Untethered Soft Robots Using Snap-Together Modules</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Luyang Zhao, <b>Yitao Jiang</b>, Chun-Yi She, Muhao Chen, Devin Balkcom</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">Soft Robotics (Under Review)</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">November 2024</span>
+            </p>
+            <div class="pub-buttons">
+              <a href="http://arxiv.org/abs/2410.19169" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a>
+              <a href="https://www.youtube.com/watch?v=SWuYzo7xSno" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a>
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/aiaa wing.jpg" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">Design and Experiment of a Lightweight Robotic Tensegrity Morphing Wing</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Luyang Zhao, <b>Yitao Jiang</b>, Chun-Yi She She, Devin Balkcom, Haibo Dong, Muhao Chen</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">AIAA SciTech2025</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">August 2024</span>
+            </p>
+            <div class="pub-buttons">
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/seesea.png" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">Multi-modal Perception Dataset of In-water Objects for Autonomous Surface Vehicles</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Mingi Jeong, Arihant Chadda, Ziang Ren, Luyang Zhao, Haowen Liu, Monika Roznere, Aiwei Zhang, <b>Yitao Jiang</b>, Sabriel Achong, Samuel Lensgraf, Alberto Quattrini Li</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">IEEE ICRA Workshop on Field Robotics 2024</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">April 2024</span>
+            </p>
+            <div class="pub-buttons">
+              <a href="https://arxiv.org/abs/2404.18411" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a>
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="pub-item w3-row-padding">
+          <div class="pub-image w3-col" style="width:200px">
+            <div style="width:192px;height:108px;overflow:hidden;background:#f1f1f1;">
+              <img src="images/demo/Tensegrity Blocks.gif" alt="Paper Preview" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+          </div>
+          <div class="pub-info w3-col" style="width:calc(100% - 200px)">
+            <h4 class="pub-title" style="margin:0 0 8px 0;font-size:16px;font-weight:bold;">Tensegrity-Blocks: Modular Shape-changing Blocks Enable Self-assembling Robotic Structures</h4>
+            <p class="pub-authors" style="margin:0 0 4px 0;font-size:14px;">Luyang Zhao, <b>Yitao Jiang</b>, Muhao Chen, Kostas Bekris, Devin Balkcom</p>
+            <p style="margin:0 0 12px 0;font-size:14px;">
+              <span class="pub-venue" style="font-style:italic">Confidential (Under Review)</span>
+              <span style="margin:0 4px;">|</span>
+              <span class="pub-date">February 2024</span>
+            </p>
+            <div class="pub-buttons">
+              <a href="https://www.researchgate.net/publication/386019728_Tensegrity-Blocks_Modular_Shape-changing_Blocks_Enable_Self-assembling_Robotic_Structures" target="_blank" class="w3-button w3-tiny w3-round w3-blue" style="margin-right:8px;padding:4px 8px;font-size:12px;">PDF</a>
+              <!-- <a href="https://www.youtube.com/watch?v=avUUYTJ178g" target="_blank" class="w3-button w3-tiny w3-round w3-red" style="margin-right:8px;padding:4px 8px;font-size:12px;">Video</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-green" style="margin-right:8px;padding:4px 8px;font-size:12px;">Code</a> -->
+              <!-- <a href="#" target="_blank" class="w3-button w3-tiny w3-round w3-orange" style="padding:4px 8px;font-size:12px;">Project Page</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+          <h4>Patents:</h4>
+          <ol>
+             <p>
+               <li><strong>External Smart Switch</strong>
+                 <br>
+                 CN (Patent) - 202211031062.X
+                 <br>
+                 Preliminary reviewed by October 8, 2022 
+               </li>
+             </p>
+             <p>
+               <li><strong>Easy Peel-Off Sticker Accessory</strong>
+                 <br>
+                 CN (Patent) - 202211032337.1
+                 <br>
+                 Preliminary reviewed by September 16, 2022 
+               </li>
+             </p>
+             <p>
+               <li><strong>The Method of Voice and Audio Enhancement Through Computer Recognition and Regeneration</strong>
+                 <br>
+                 CN (Patent) - 202110035305.6
+                 <br>
+                 Preliminary reviewed by March 30, 2021 
+               </li>
+             </p>
+           </ol>
        </p>
      </div>
+
+     <!-- The Professional Experience Section -->
+       <div class="w3-container w3-light-grey w3-padding-32" id="professional">
+         <h2>Professional Experiences</h2>
+           
+         <dl>
+           <p> <!--Element-->
+             <dt><b>Dartmouth Reality and Robotics Lab</b><a style="float: right;">10/2022 - 09/2024</a></dt>
+             <dt><a style="float: right;">Hanover, U.S.</a></dt>
+             <dd><b>Research Assistant</b></dd>
+             <dd>
+               <ul>
+                 <li>Research in modular tensegrity robots, including structure, motion, and control</li>
+                 <li>Design experiments and engineering solutions for experiments</li>
+                 <li>Hardware design, embedded programming, and managing the experiment robot development</li>
+                 <li>Purposed multiple further research orientations and dived deep into them for publications</li>
+               </ul>
+             </dd>
+           </p>
+           <p> <!--Element-->
+             <dt><b>ByteDance Ltd.</b><a style="float: right;">03/2023 - 05/2023 (12 Weeks)</a></dt>
+             <dt><a style="float: right;">Shenzhen, China</a></dt>
+             <dd><b>Tech PMO Intern</b></dd>
+             <dd>
+               <ul>
+                 <li>Coordinated the management of 6 projects across the Toutiao&UG&Search business line and the internal security team</li>
+                 <li>Managed a confidential project involving 68 stakeholders from initiation to company-wide internal testing launch, ensuring smooth communication and alignment of goals</li>
+                 <li>Analyzed project processes, blocking points, then optimize workflow in adherence to established procedures, enhanced productivity and work efficiency</li>
+                 <li>Conducted demand return measurements and provided insightful reports on specific business</li>
+               </ul>
+             </dd>
+           </p>
+           <p> <!--Element-->
+             <dt><b>University of California, Santa Cruz</b><a style="float: right;">01/2022 - 06/2022</a></dt>
+             <dt><a style="float: right;">Santa Cruz, U.S.</a></dt>
+             <dd><b>Tutor/Grader</b></dd>
+             <dd>
+               <ul>
+                 <li>Instructing students in the tutoring section twice a week and guiding students on their assignments</li>
+                 <li>Communicate with the professor and other TAs to work on grading and teaching</li>
+               </ul>
+             </dd>
+           </p>
+           <p> <!--Element-->
+             <dt><b>Shenzhen Babatech Co., Ltd.</b><a style="float: right;">10/2016 - 06/2022</a></dt>
+             <dt><a style="float: right;">Shenzhen, China</a></dt>
+             <dd><b>Founder</b></dd>
+             <dd>
+               <ul>
+                 <li>Achieved an annual turnover of 30k USD by the year 2020, and the total number of customers reached 300+</li>
+                 <li>Developed a mini-program independently for snack selling on the WeChat platform to sell snacks in the North American market</li>
+                 <li>Connect with supplier for order and inventory control; in charge of warehouse management and transportation management</li>
+                 <li>Performed data analytics for target customer profiling and developed marketing campaigns</li>
+               </ul>
+             </dd>
+           </p>
+           <p> <!--Element-->
+             <dt><b>Quandiankeji (Shenzhen) Ltd.</b><a style="float: right;">11/2019 - 03/2022</a></dt>
+             <dt><a style="float: right;">Shenzhen, China</a></dt>
+             <dd><b>CTO</b></dd>
+             <dd>
+               <ul>
+                 <li>Led the team of 12 people across product R&D, design team, and product owner; determined and executed the development plan</li>
+                 <li>Managed relationships with international customers (France and Spain) and customized solutions</li>
+                 <li>Inspected all the code and merged code written by colleges</li>
+                 <li>Coded backend system and embedded system</li>
+               </ul>
+             </dd>
+           </p>
+           <p> <!--Element-->
+             <dt><b>Shenzhen Vanke Meisha Academy</b><a style="float: right;">08/2020 - 02/2021</a></dt>
+             <dt><a style="float: right;">Shenzhen, China</a></dt>
+             <dd><b>STEAM Teacher</b></dd>
+             <dd>
+               <ul>
+                 <li>Design and execute the course plan for Electronic Engineering, Robotics class</li>
+                 <li>Communicate and collaborate with other teachers about teaching and various stuff</li>
+               </ul>
+             </dd>
+           </p>
+           <p> <!--Element-->
+             <dt><b>Shenzhen Wuxianxuhang Ltd.</b><a style="float: right;">06/2019 - 11/2019</a></dt>
+             <dt><a style="float: right;">Shenzhen, China</a></dt>
+             <dd><b>Software and Hardware Engineer Intern</b></dd>
+             <dd>
+               <ul>
+                 <li>Developed product and upgraded information system, including electronic circuit design and server middleware programming</li>
+                 <li>Tripled sales for the upgraded product compared with the prior product to 3k+</li>
+                 <li>Reduced server cost by 50% by solving the crash caused by overflow; improved the stability, capability, and robustness of service</li>
+               </ul>
+             </dd>
+           </p>
+         </dl>
+       </div>
   
 <!-- The Projects Section -->
-  <div class="w3-container w3-padding-32" id="projects">
+  <!-- <div class="w3-container w3-padding-32" id="projects">
     <h2>Projects</h2>
     <p class="w3-justify">
         The projects including various type. Some of them are for business or academic, but most of them are just for entertainment.
     </p>
-        <p> <!--Element-->
+        <p>
           <li><b>Auto Trader</b><a style="float: right;">12/2016 - 02/2022</a></li>
           <dd><b>Individual Researcher</b><a style="float: right;">China & U.S.</a></dd>
           <dd>
@@ -248,7 +436,7 @@
           </dd>
         </p>
 
-        <p> <!--Element-->
+        <p>
           <li><b>Course Project of Computer Science Capstone</b><a style="float: right;">03/2021 - 06/2021</a></li>
           <dd><b>Team Leader</b><a style="float: right;">Santa Cruz, U.S.</a></dd>
           <dd>
@@ -259,7 +447,7 @@
           </dd>
         </p>
 
-        <p> <!--Element-->
+        <p>
           <li><b>Speech Enhancement with Computer Recognition and Reproducing</b><a style="float: right;">11/2020 - 03/2021</a></li>
           <dd><b>Leading Researcher</b><a style="float: right;">Beijing, China</a></dd>
           <dd>
@@ -270,7 +458,7 @@
           </dd>
         </p>
 
-        <p> <!--Element-->
+        <p>
           <li><b>Basic Components CPU Design</b><a style="float: right;">05/2020 - 10/2020</a></li>
           <dd><b>Researcher</b><a style="float: right;">Shenzhen, China</a></dd>
           <dd>
@@ -283,7 +471,7 @@
           </dd>
         </p>
 
-        <p> <!--Element-->
+        <p>
           <li><b>Mixed Reality Explore Experiment</b><a style="float: right;">03/2016 - 11/2019</a></li>
           <dd><b>Individual Researcher</b><a style="float: right;">Shenzhen, China</a></dd>
           <dd>
@@ -293,10 +481,10 @@
             </ul>
           </dd>
         </p>
-  </div>
+  </div> -->
 
   <!-- The Awards Section -->
-  <div class="w3-container w3-light-grey w3-padding-32" id="award">
+  <div class="w3-container w3-padding-32" id="award">
     <h2>Awards</h2>
       <p><li>China National Final Second Prize of Microsoft Imagine Cup<a style="float: right;">03/2021</a></p>
       <p><li>Top 10 Winner of 2018 Imagine Big Idea Challenge<a style="float: right;">03/2018</a></p>
@@ -305,7 +493,7 @@
   </div>
 
   <!-- The Others Section -->
-    <div class="w3-container w3-padding-32" id="others">
+    <div class="w3-container w3-light-grey w3-padding-32" id="others">
      <h2>Others</h2>
       <p> <!--Element-->
         <h3>Volunteer Involvement</h3>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转盘控制器</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .btn-control {
+            margin: 0.5rem 0;
+        }
+        .card {
+            margin-bottom: 1rem;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="mb-4">转盘控制器</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">蓝牙连接</h5>
+                <button id="btnConnect" class="btn btn-primary">连接设备</button>
+                <span id="connectionStatus" class="ms-3">未连接</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">基本设置</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="runMode">运行模式</label>
+                            <select class="form-select" id="runMode">
+                                <option value="0">单步指定角度</option>
+                                <option value="1">连续360度</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="direction">旋转方向</label>
+                            <select class="form-select" id="direction">
+                                <option value="1">顺时针</option>
+                                <option value="0">逆时针</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="speed">旋转速度</label>
+                            <input type="range" class="form-range" id="speed" min="1" max="255" value="255">
+                            <span id="speedValue">255</span>
+                        </div>
+
+                        <div class="form-group hidden" id="stepAngleGroup">
+                            <label for="stepAngle">步进角度 (度)</label>
+                            <input type="number" class="form-control" id="stepAngle" value="10" min="1" max="360">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="photoTiming">拍照时机</label>
+                            <select class="form-select" id="photoTiming">
+                                <option value="0">不拍照</option>
+                                <option value="1">单步执行前</option>
+                                <option value="2">单步执行后</option>
+                                <option value="3">连续360度每隔指定时间</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group hidden" id="photoIntervalGroup">
+                            <label for="photoInterval">拍照间隔 (ms)</label>
+                            <input type="number" class="form-control" id="photoInterval" value="1000" min="0">
+                        </div>
+                        
+                        <div class="form-group hidden" id="stepDelayGroup">
+                            <label for="stepDelay">单步延迟 (ms)</label>
+                            <input type="number" class="form-control" id="stepDelay" value="1000" min="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">完成条件</h5>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="completeCondition" id="byPhotos" value="0" checked>
+                        <label class="form-check-label" for="byPhotos">
+                            按照照片数量
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="completeCondition" id="byAngle" value="1">
+                        <label class="form-check-label" for="byAngle">
+                            按照累计角度
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" id="targetPhotosGroup">
+                        <div class="form-group">
+                            <label for="targetPhotos">目标照片数量</label>
+                            <input type="number" class="form-control" id="targetPhotos" value="36" min="1">
+                        </div>
+                    </div>
+                    <div class="col-md-6 hidden" id="targetAngleGroup">
+                        <div class="form-group">
+                            <label for="targetAngle">目标累计角度</label>
+                            <input type="number" class="form-control" id="targetAngle" value="360" min="1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">启动设置</h5>
+                <div class="form-group">
+                    <label for="startDelay">启动延迟 (秒)</label>
+                    <input type="number" class="form-control" id="startDelay" value="5" min="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button id="btnSave" class="btn btn-primary btn-control">保存设置</button>
+            <button id="btnStart" class="btn btn-success btn-control">开始运行</button>
+            <button id="btnStop" class="btn btn-danger btn-control">停止运行</button>
+        </div>
+    </div>
+
+    <script>
+        const SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
+        const CONTROL_CHAR_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
+        const STATUS_CHAR_UUID = "5999553d-6b43-4c75-8e8d-ac9e67d0e2af";
+
+        let bluetoothDevice;
+        let controlCharacteristic;
+
+        // 更新界面显示
+        function updateUIVisibility() {
+            const runMode = document.getElementById('runMode').value;
+            const photoTiming = document.getElementById('photoTiming').value;
+            const completeCondition = document.querySelector('input[name="completeCondition"]:checked').value;
+
+            // 步进角度只在单步模式显示
+            document.getElementById('stepAngleGroup').classList.toggle('hidden', runMode !== '0');
+
+            // 单步延迟仅在单步模式且拍照时机为前或后时显示
+            document.getElementById('stepDelayGroup').classList.toggle('hidden', 
+                !(runMode === '0' && (photoTiming === '1' || photoTiming === '2')));
+
+            // 拍照间隔仅在连续模式且选择连续拍照时显示
+            document.getElementById('photoIntervalGroup').classList.toggle('hidden', 
+                !(runMode === '1' && photoTiming === '3'));
+
+            // 调整拍照时机下拉菜单选项
+            const photoTimingSelect = document.getElementById('photoTiming');
+            for (let i = 0; i < photoTimingSelect.options.length; i++) {
+                let option = photoTimingSelect.options[i];
+                if (runMode === '0') {
+                    // 单步模式：只允许NO_PHOTO, BEFORE_STEP, AFTER_STEP
+                    option.hidden = (option.value === '3');
+                } else if (runMode === '1') {
+                    // 连续模式：只允许NO_PHOTO, CONTINUOUS_INTERVAL
+                    option.hidden = (option.value === '1' || option.value === '2');
+                }
+            }
+
+            // 完成条件的显示控制
+            document.getElementById('targetPhotosGroup').classList.toggle('hidden', 
+                completeCondition !== '0');
+            document.getElementById('targetAngleGroup').classList.toggle('hidden', 
+                completeCondition !== '1');
+        }
+
+        // 更新速度显示
+        document.getElementById('speed').addEventListener('input', function(e) {
+            document.getElementById('speedValue').textContent = e.target.value;
+        });
+
+        // 监听UI变化
+        document.getElementById('runMode').addEventListener('change', updateUIVisibility);
+        document.getElementById('photoTiming').addEventListener('change', updateUIVisibility);
+        document.getElementsByName('completeCondition').forEach(radio => {
+            radio.addEventListener('change', updateUIVisibility);
+        });
+
+        // 连接设备
+        document.getElementById('btnConnect').addEventListener('click', async () => {
+            try {
+                bluetoothDevice = await navigator.bluetooth.requestDevice({
+                    filters: [{
+                        name: "Yitao's Turntable"
+                    }],
+                    optionalServices: [SERVICE_UUID]
+                });
+
+                const server = await bluetoothDevice.gatt.connect();
+                const service = await server.getPrimaryService(SERVICE_UUID);
+                controlCharacteristic = await service.getCharacteristic(CONTROL_CHAR_UUID);
+                
+                document.getElementById('connectionStatus').textContent = '已连接';
+                document.getElementById('btnConnect').disabled = true;
+            } catch (error) {
+                console.error('连接失败:', error);
+                alert('连接失败: ' + error);
+            }
+        });
+
+        // 获取当前配置
+        function getConfig() {
+            return {
+                runMode: parseInt(document.getElementById('runMode').value),
+                clockwise: document.getElementById('direction').value === '1',
+                speed: parseInt(document.getElementById('speed').value),
+                photoTiming: parseInt(document.getElementById('photoTiming').value),
+                photoInterval: parseInt(document.getElementById('photoInterval').value),
+                stepDelay: parseInt(document.getElementById('stepDelay').value),
+                stepAngle: parseFloat(document.getElementById('stepAngle').value),
+                completeCondition: parseInt(document.querySelector('input[name="completeCondition"]:checked').value),
+                targetPhotos: parseInt(document.getElementById('targetPhotos').value),
+                targetAngle: parseFloat(document.getElementById('targetAngle').value),
+                startDelay: parseInt(document.getElementById('startDelay').value)
+            };
+        }
+
+        // 发送配置
+        async function sendConfig(config) {
+            if (!controlCharacteristic) {
+                alert('请先连接设备');
+                return;
+            }
+
+            // 计算配置的字节长度
+            const buffer = new ArrayBuffer(29); // 1 (cmd) + 1 (runMode) + 1 (clockwise) + 1 (speed) + 1 (photoTiming) + 4 (photoInterval) + 4 (stepDelay) + 4 (stepAngle) + 1 (completeCondition) + 4 (targetPhotos) + 4 (targetAngle) + 4 (startDelay) = 25 bytes
+            const view = new DataView(buffer);
+            let offset = 0;
+
+            // 命令类型
+            view.setUint8(offset++, 0x01);
+
+            // 配置数据
+            view.setUint8(offset++, config.runMode);
+            view.setUint8(offset++, config.clockwise ? 1 : 0);
+            view.setUint8(offset++, config.speed);
+            view.setUint8(offset++, config.photoTiming);
+            view.setUint32(offset, config.photoInterval, true); offset += 4;
+            view.setUint32(offset, config.stepDelay, true); offset += 4;
+            view.setFloat32(offset, config.stepAngle, true); offset += 4;
+            view.setUint8(offset++, config.completeCondition);
+            view.setUint32(offset, config.targetPhotos, true); offset += 4;
+            view.setFloat32(offset, config.targetAngle, true); offset += 4;
+            view.setUint32(offset, config.startDelay, true); offset += 4;
+
+            await controlCharacteristic.writeValue(buffer);
+        }
+
+        // 保存按钮
+        document.getElementById('btnSave').addEventListener('click', async () => {
+            try {
+                await sendConfig(getConfig());
+                alert('设置已保存');
+            } catch (error) {
+                console.error('保存失败:', error);
+                alert('保存失败: ' + error);
+            }
+        });
+
+        // 开始按钮
+        document.getElementById('btnStart').addEventListener('click', async () => {
+            if (!controlCharacteristic) {
+                alert('请先连接设备');
+                return;
+            }
+
+            try {
+                await controlCharacteristic.writeValue(new Uint8Array([0x02]));
+            } catch (error) {
+                console.error('启动失败:', error);
+                alert('启动失败: ' + error);
+            }
+        });
+
+        // 停止按钮
+        document.getElementById('btnStop').addEventListener('click', async () => {
+            if (!controlCharacteristic) {
+                alert('请先连接设备');
+                return;
+            }
+
+            try {
+                await controlCharacteristic.writeValue(new Uint8Array([0x03]));
+            } catch (error) {
+                console.error('停止失败:', error);
+                alert('停止失败: ' + error);
+            }
+        });
+
+        // 初始化UI显示
+        updateUIVisibility();
+    </script>
+</body>
+</html>

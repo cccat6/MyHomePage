@@ -18,6 +18,9 @@
         .hidden {
             display: none;
         }
+        #mainContent {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -32,122 +35,130 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">基本设置</h5>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="runMode">运行模式</label>
-                            <select class="form-select" id="runMode">
-                                <option value="0">单步指定角度</option>
-                                <option value="1">连续360度</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="direction">旋转方向</label>
-                            <select class="form-select" id="direction">
-                                <option value="1">顺时针</option>
-                                <option value="0">逆时针</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="speed">旋转速度</label>
-                            <input type="range" class="form-range" id="speed" min="1" max="255" value="255">
-                            <span id="speedValue">255</span>
-                        </div>
+        <div id="mainContent">
+            <!-- 基本设置部分 -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">基本设置</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="runMode">运行模式</label>
+                                <select class="form-select" id="runMode">
+                                    <option value="0">单步指定角度</option>
+                                    <option value="1">连续360度</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="direction">旋转方向</label>
+                                <select class="form-select" id="direction">
+                                    <option value="1">顺时针</option>
+                                    <option value="0">逆时针</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="speed">旋转速度</label>
+                                <input type="range" class="form-range" id="speed" min="1" max="255" value="255">
+                                <span id="speedValue">255</span>
+                            </div>
 
-                        <div class="form-group hidden" id="stepAngleGroup">
-                            <label for="stepAngle">步进角度 (度)</label>
-                            <input type="number" class="form-control" id="stepAngle" value="10" min="1" max="360">
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="photoTiming">拍照时机</label>
-                            <select class="form-select" id="photoTiming">
-                                <option value="0">不拍照</option>
-                                <option value="1">单步执行前</option>
-                                <option value="2">单步执行后</option>
-                                <option value="3">连续360度每隔指定时间</option>
-                            </select>
+                            <div class="form-group" id="stepAngleGroup">
+                                <label for="stepAngle">步进角度 (度)</label>
+                                <input type="number" class="form-control" id="stepAngle" value="10" min="1" max="360">
+                            </div>
+
+                            <div class="form-group" id="stepDelayGroup">
+                                <label for="stepDelay">单步延迟 (ms)</label>
+                                <input type="number" class="form-control" id="stepDelay" value="1000" min="0">
+                            </div>
                         </div>
                         
-                        <div class="form-group hidden" id="photoIntervalGroup">
-                            <label for="photoInterval">拍照间隔 (ms)</label>
-                            <input type="number" class="form-control" id="photoInterval" value="1000" min="0">
-                        </div>
-                        
-                        <div class="form-group hidden" id="stepDelayGroup">
-                            <label for="stepDelay">单步延迟 (ms)</label>
-                            <input type="number" class="form-control" id="stepDelay" value="1000" min="0">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="photoTiming">拍照时机</label>
+                                <select class="form-select" id="photoTiming">
+                                    <option value="0">不拍照</option>
+                                    <option value="1">单步执行前</option>
+                                    <option value="2">单步执行后</option>
+                                    <option value="3">连续360度每隔指定时间</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group hidden" id="photoIntervalGroup">
+                                <label for="photoInterval">拍照延迟 (ms)</label>
+                                <input type="number" class="form-control" id="photoInterval" value="1000" min="0">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">完成条件</h5>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="completeCondition" id="byPhotos" value="0" checked>
-                        <label class="form-check-label" for="byPhotos">
-                            按照照片数量
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="completeCondition" id="byAngle" value="1">
-                        <label class="form-check-label" for="byAngle">
-                            按照累计角度
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" id="targetPhotosGroup">
-                        <div class="form-group">
-                            <label for="targetPhotos">目标照片数量</label>
-                            <input type="number" class="form-control" id="targetPhotos" value="36" min="1">
+            <!-- 完成条件部分 -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">完成条件</h5>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="completeCondition" id="byPhotos" value="0" checked>
+                            <label class="form-check-label" for="byPhotos">
+                                按照照片数量
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="completeCondition" id="byAngle" value="1">
+                            <label class="form-check-label" for="byAngle">
+                                按照累计角度
+                            </label>
                         </div>
                     </div>
-                    <div class="col-md-6 hidden" id="targetAngleGroup">
-                        <div class="form-group">
-                            <label for="targetAngle">目标累计角度</label>
-                            <input type="number" class="form-control" id="targetAngle" value="360" min="1">
+                    <div class="row">
+                        <div class="col-md-6" id="targetPhotosGroup">
+                            <div class="form-group">
+                                <label for="targetPhotos">目标照片数量</label>
+                                <input type="number" class="form-control" id="targetPhotos" value="36" min="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6 hidden" id="targetAngleGroup">
+                            <div class="form-group">
+                                <label for="targetAngle">目标累计角度</label>
+                                <input type="number" class="form-control" id="targetAngle" value="360" min="1">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">启动设置</h5>
-                <div class="form-group">
-                    <label for="startDelay">启动延迟 (秒)</label>
-                    <input type="number" class="form-control" id="startDelay" value="5" min="0">
+            <!-- 启动设置部分 -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">启动设置</h5>
+                    <div class="form-group">
+                        <label for="startDelay">启动延迟 (秒)</label>
+                        <input type="number" class="form-control" id="startDelay" value="5" min="0">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="d-grid gap-2">
-            <button id="btnSave" class="btn btn-primary btn-control">保存设置</button>
-            <button id="btnStart" class="btn btn-success btn-control">开始运行</button>
-            <button id="btnStop" class="btn btn-danger btn-control">停止运行</button>
+            <!-- 控制按钮 -->
+            <div class="d-grid gap-2">
+                <button id="btnSave" class="btn btn-primary btn-control">保存设置</button>
+                <button id="btnStart" class="btn btn-success btn-control">开始运行</button>
+                <button id="btnStop" class="btn btn-danger btn-control">停止运行</button>
+            </div>
         </div>
     </div>
 
     <script>
         const SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
         const CONTROL_CHAR_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
+        const CONFIG_READ_CHAR_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a9";
         const STATUS_CHAR_UUID = "5999553d-6b43-4c75-8e8d-ac9e67d0e2af";
 
         let bluetoothDevice;
         let controlCharacteristic;
+        let configReadCharacteristic;
 
         // 更新界面显示
         function updateUIVisibility() {
@@ -157,14 +168,13 @@
 
             // 步进角度只在单步模式显示
             document.getElementById('stepAngleGroup').classList.toggle('hidden', runMode !== '0');
+            
+            // 单步延迟只在单步模式显示
+            document.getElementById('stepDelayGroup').classList.toggle('hidden', runMode !== '0');
 
-            // 单步延迟仅在单步模式且拍照时机为前或后时显示
-            document.getElementById('stepDelayGroup').classList.toggle('hidden', 
-                !(runMode === '0' && (photoTiming === '1' || photoTiming === '2')));
-
-            // 拍照间隔仅在连续模式且选择连续拍照时显示
+            // 拍照延迟根据拍照时机显示
             document.getElementById('photoIntervalGroup').classList.toggle('hidden', 
-                !(runMode === '1' && photoTiming === '3'));
+                photoTiming === '0');
 
             // 调整拍照时机下拉菜单选项
             const photoTimingSelect = document.getElementById('photoTiming');
@@ -173,7 +183,7 @@
                 if (runMode === '0') {
                     // 单步模式：只允许NO_PHOTO, BEFORE_STEP, AFTER_STEP
                     option.hidden = (option.value === '3');
-                } else if (runMode === '1') {
+                } else {
                     // 连续模式：只允许NO_PHOTO, CONTINUOUS_INTERVAL
                     option.hidden = (option.value === '1' || option.value === '2');
                 }
@@ -184,6 +194,67 @@
                 completeCondition !== '0');
             document.getElementById('targetAngleGroup').classList.toggle('hidden', 
                 completeCondition !== '1');
+        }
+
+        // 从设备读取配置并更新UI
+        async function readConfigFromDevice() {
+            try {
+                const value = await configReadCharacteristic.readValue();
+                const rawData = new Uint8Array(value.buffer);
+                console.log("Raw config data:", Array.from(rawData).map(x => x.toString(16).padStart(2, '0')).join(' '));
+                const view = new DataView(value.buffer);
+                
+                if (view.getUint8(0) === 0xFF) {
+                    let offset = 1;  // 跳过标记字节
+                    
+                    // 按照实际的内存偏移解析
+                    const config = {
+                        runMode: view.getInt32(offset + 0, true),      // offset 0
+                        clockwise: view.getUint8(offset + 4) !== 0,    // offset 4
+                        speed: view.getUint8(offset + 5),              // offset 5
+                        photoTiming: view.getInt32(offset + 8, true),  // offset 8
+                        photoInterval: view.getUint32(offset + 12, true), // offset 12
+                        stepDelay: view.getUint32(offset + 16, true),    // offset 16
+                        stepAngle: view.getFloat32(offset + 20, true),   // offset 20
+                        completeCondition: view.getInt32(offset + 24, true), // offset 24
+                        targetPhotos: view.getUint32(offset + 28, true),    // offset 28
+                        targetAngle: view.getFloat32(offset + 32, true),    // offset 32
+                        startDelay: view.getUint32(offset + 36, true)       // offset 36
+                    };
+
+                    // 打印解析后的配置
+                    console.log('Parsed config:', config);
+
+                    // 更新UI
+                    document.getElementById('runMode').value = config.runMode.toString();
+                    document.getElementById('direction').value = config.clockwise ? "1" : "0";
+                    document.getElementById('speed').value = config.speed.toString();
+                    document.getElementById('speedValue').textContent = config.speed.toString();
+                    document.getElementById('photoTiming').value = config.photoTiming.toString();
+                    document.getElementById('photoInterval').value = config.photoInterval.toString();
+                    document.getElementById('stepDelay').value = config.stepDelay.toString();
+                    document.getElementById('stepAngle').value = config.stepAngle.toString();
+                    
+                    const radioButton = document.querySelector(`input[name="completeCondition"][value="${config.completeCondition}"]`);
+                    if (radioButton) {
+                        radioButton.checked = true;
+                    } else {
+                        console.warn('No matching radio button for completeCondition:', config.completeCondition);
+                    }
+                    
+                    document.getElementById('targetPhotos').value = config.targetPhotos.toString();
+                    document.getElementById('targetAngle').value = config.targetAngle.toString();
+                    document.getElementById('startDelay').value = config.startDelay.toString();
+
+                    // 更新UI显示
+                    updateUIVisibility();
+                    document.getElementById('mainContent').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('读取配置失败:', error);
+                console.error('错误详情:', error.message);
+                alert('读取配置失败: ' + error);
+            }
         }
 
         // 更新速度显示
@@ -208,14 +279,28 @@
                     optionalServices: [SERVICE_UUID]
                 });
 
+                console.log("Device selected:", bluetoothDevice.name);
+                
                 const server = await bluetoothDevice.gatt.connect();
+                console.log("Connected to GATT server");
+                
                 const service = await server.getPrimaryService(SERVICE_UUID);
+                console.log("Got primary service");
+                
                 controlCharacteristic = await service.getCharacteristic(CONTROL_CHAR_UUID);
+                console.log("Got control characteristic");
+                
+                configReadCharacteristic = await service.getCharacteristic(CONFIG_READ_CHAR_UUID);
+                console.log("Got config read characteristic");
                 
                 document.getElementById('connectionStatus').textContent = '已连接';
                 document.getElementById('btnConnect').disabled = true;
+
+                // 读取设备配置
+                await readConfigFromDevice();
             } catch (error) {
                 console.error('连接失败:', error);
+                console.error('错误详情:', error.message);
                 alert('连接失败: ' + error);
             }
         });
@@ -244,28 +329,38 @@
                 return;
             }
 
-            // 计算配置的字节长度
-            const buffer = new ArrayBuffer(29); // 1 (cmd) + 1 (runMode) + 1 (clockwise) + 1 (speed) + 1 (photoTiming) + 4 (photoInterval) + 4 (stepDelay) + 4 (stepAngle) + 1 (completeCondition) + 4 (targetPhotos) + 4 (targetAngle) + 4 (startDelay) = 25 bytes
-            const view = new DataView(buffer);
-            let offset = 0;
+            try {
+                const buffer = new ArrayBuffer(41); // 40字节Config + 1字节命令
+                const view = new DataView(buffer);
+                const offset = 1;  // 第一个字节是命令
 
-            // 命令类型
-            view.setUint8(offset++, 0x01);
+                // 命令类型
+                view.setUint8(0, 0x01);
 
-            // 配置数据
-            view.setUint8(offset++, config.runMode);
-            view.setUint8(offset++, config.clockwise ? 1 : 0);
-            view.setUint8(offset++, config.speed);
-            view.setUint8(offset++, config.photoTiming);
-            view.setUint32(offset, config.photoInterval, true); offset += 4;
-            view.setUint32(offset, config.stepDelay, true); offset += 4;
-            view.setFloat32(offset, config.stepAngle, true); offset += 4;
-            view.setUint8(offset++, config.completeCondition);
-            view.setUint32(offset, config.targetPhotos, true); offset += 4;
-            view.setFloat32(offset, config.targetAngle, true); offset += 4;
-            view.setUint32(offset, config.startDelay, true); offset += 4;
+                // 按照Arduino的内存布局写入数据
+                view.setInt32(offset + 0, config.runMode, true);       // offset 0
+                view.setUint8(offset + 4, config.clockwise ? 1 : 0);   // offset 4
+                view.setUint8(offset + 5, config.speed);               // offset 5
+                // offset 6-7 是padding
+                view.setInt32(offset + 8, config.photoTiming, true);   // offset 8
+                view.setUint32(offset + 12, config.photoInterval, true); // offset 12
+                view.setUint32(offset + 16, config.stepDelay, true);     // offset 16
+                view.setFloat32(offset + 20, config.stepAngle, true);    // offset 20
+                view.setInt32(offset + 24, config.completeCondition, true); // offset 24
+                view.setUint32(offset + 28, config.targetPhotos, true);     // offset 28
+                view.setFloat32(offset + 32, config.targetAngle, true);     // offset 32
+                view.setUint32(offset + 36, config.startDelay, true);       // offset 36
 
-            await controlCharacteristic.writeValue(buffer);
+                // 打印要发送的数据，便于调试
+                const rawData = new Uint8Array(buffer);
+                console.log("Sending config data:", Array.from(rawData).map(x => x.toString(16).padStart(2, '0')).join(' '));
+
+                await controlCharacteristic.writeValue(buffer);
+            } catch (error) {
+                console.error('发送配置失败:', error);
+                console.error('错误详情:', error.message);
+                throw error;
+            }
         }
 
         // 保存按钮
